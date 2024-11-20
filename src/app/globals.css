@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import 'flowbite';
+
+
+#dropdown_main button{
+    background-color: transparent;
+}
+#dropdown_main span{
+    color: black !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    padding: 0px !important;
+}
+#dropdown_main svg{
+    margin-top: 4px !important;
+    color: black !important;
+    font-size: 16px !important;
+    font: 400 !important;
+}
+
+#form div div {
+    height: 33px !important;
+}
+#form div div input{
+    height: 33px !important;
+}

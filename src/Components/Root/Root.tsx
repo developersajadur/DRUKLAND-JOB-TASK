@@ -1,5 +1,6 @@
 import TopHeader from "@/Components/Shared/TopHeader";
 import { ReactNode } from "react";
+import Navbar from "../Shared/Navbar";
 
 interface RootProps {
   children: ReactNode; // Specifies that `children` can be any valid React content
@@ -13,8 +14,13 @@ const Root: React.FC<RootProps> = ({ children }) => {
         <TopHeader/>
       </header>
 
+      {/* Navbar */}
+      <nav>
+        <Navbar/>
+      </nav>
+
       <main className="flex-1 p-4 md:p-8 bg-gray-50 min-h-screen">
-        <section className="w-full h-full pb-16">{children}</section>
+        <section className="w-full h-full pb-16 bg-[#F1F1F1]]">{children}</section>
       </main>
     </div>
   );
