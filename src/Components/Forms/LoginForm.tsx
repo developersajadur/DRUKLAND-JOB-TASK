@@ -41,16 +41,15 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
-      <div className="p-8 rounded-2xl bg-white">
-        <h2 className="text-3xl font-normal text-[#0F0F0F] text-center">
-          Drukland.de
-        </h2>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="p-8 rounded-2xl bg-white max-w-sm w-full shadow-lg">
+        <h2 className="font-clash text-3xl font-normal text-[#0F0F0F] text-center">Drukland.de</h2>
+        
         <div className="mt-8 leading-[5px]">
-          <h3 className="text-2xl text-[#0F0F0F]">Sign In to your account</h3>
-          <h6 className="text-[14px] text-[#292929]">
+          <h3 className="font-clash text-2xl text-[#0F0F0F]">Sign In to your account</h3>
+          <h6 className="font-clash text-[14px] text-[#292929]">
             Don’t you have an account?{" "}
-            <Link href="#" className="text-base text-[#0B0B0B]">
+            <Link href="#" className="font-clash text-base text-[#0B0B0B]">
               Register
             </Link>
           </h6>
@@ -58,9 +57,12 @@ const LoginForm = () => {
 
         {/* Flash Message */}
         {flashMessage && (
-          <Alert color={flashMessageType === "success" ? "success" : "failure"} className="mt-4">
-            {flashMessage}
-          </Alert>
+          <div className="flex gap-1 items-center justify-center mt-6 text-center">
+          <MdError />
+          <h6 className="font-clash text-[12px] mt-1 text-black text-center">
+            Unknown email address. Try again!
+          </h6>
+        </div>
         )}
 
         {/* Form Input */}
@@ -72,8 +74,9 @@ const LoginForm = () => {
               type="email"
               label="Email Address"
               color="success"
+              className="w-full mb-4"
             />
-            {errors.email && <p className="text-red-500 text-xs">{errors.email.message}</p>}
+            {errors.email && <p className="font-clash text-red-500 text-xs">{errors.email.message}</p>}
 
             <FloatingLabel
               {...register("password", { required: "Password is required" })}
@@ -81,24 +84,23 @@ const LoginForm = () => {
               type="password"
               label="Password"
               color="success"
+              className="w-full mb-4"
             />
-            {errors.password && <p className="text-red-500 text-xs">{errors.password.message}</p>}
+            {errors.password && <p className="font-clash text-red-500 text-xs">{errors.password.message}</p>}
 
             <div className="flex items-center gap-2 mt-8">
               <Checkbox required id="remember" />
-              <Label
-                className="flex items-center gap-1 mb-1"
-                htmlFor="remember"
-              >
-                <p className="text-sm text-[#292929] font-normal">
+              <Label className="flex items-center gap-1 mb-1" htmlFor="remember">
+                <p className="font-clash text-sm mt-1 text-[#292929] font-normal">
                   I agree to all
                 </p>{" "}
-                <Link href="#" className="text-sm text-[#0B0B0B] font-normal">
+                <Link href="#" className="font-clash text-sm text-[#0B0B0B] font-normal">
                   Terms & Conditions
                 </Link>
               </Label>
             </div>
-            <Button type="submit" className="bg-[#0F0F0F] text-base font-normal w-full mt-3">
+
+            <Button type="submit" className="font-clash bg-[#0F0F0F] text-base font-normal w-full mt-3">
               Log In
             </Button>
           </form>
@@ -107,7 +109,7 @@ const LoginForm = () => {
         {/* Horizontal Rule with Text */}
         <div className="flex items-center my-4">
           <hr className="flex-grow border-[#0F0F0F]" />
-          <span className="px-3 text-sm text-[#0F0F0F]">or sign in with</span>
+          <span className="font-clash px-3 text-sm text-[#0F0F0F]">or sign in with</span>
           <hr className="flex-grow border-[#0F0F0F]" />
         </div>
 

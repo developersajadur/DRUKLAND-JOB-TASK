@@ -11,6 +11,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        raleway: ['"Raleway"', 'sans-serif'], // Add Raleway font
+        clash: ['"Clash Display"', 'serif'],  // Add Clash Display font
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

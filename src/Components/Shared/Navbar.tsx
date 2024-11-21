@@ -60,7 +60,7 @@ const Navbar: React.FC = () => {
       <div className="h-[80px] flex justify-between items-center">
         {/* Logo */}
         <Link href="/">
-          <h1 className="text-4xl font-semibold text-[#0B0B0B]">Drukland.de</h1>
+          <h1 className="font-clash text-4xl font-semibold text-[#0B0B0B]">Drukland.de</h1>
         </Link>
 
         {/* Navigation Links */}
@@ -76,7 +76,7 @@ const Navbar: React.FC = () => {
                   {item.megaMenu.map((subItem, subIndex) => (
                     <Dropdown.Item key={subIndex}>
                       <Link
-                        className="text-black text-base font-normal w-fit"
+                        className="font-clash text-black text-base font-normal w-fit"
                         href={subItem.path}
                       >
                         {subItem.title}
@@ -87,7 +87,7 @@ const Navbar: React.FC = () => {
               ) : (
                 <Link
                   href={item.path || "#"}
-                  className="text-black text-base font-normal"
+                  className="font-clash text-black text-base font-normal"
                 >
                   {item.label}
                 </Link>

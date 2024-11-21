@@ -20,22 +20,22 @@ const TopHeader: React.FC = () => {
     {
       title: "FAQ",
       path: "#",
-      icon: <FaRegCircleQuestion className="text-lg" />, // Adding the icon component directly
+      icon: <FaRegCircleQuestion className=" font-raleway text-lg" />, // Adding the icon component directly
     },
     {
       title: "Send Inquiry",
       path: "#",
-      icon: <MdMailOutline className="text-lg" />,
+      icon: <MdMailOutline className=" font-raleway text-lg" />,
     },
     {
       title: "Live Support",
       path: "#",
-      icon: <BiMessageRoundedDetail className="text-lg" />,
+      icon: <BiMessageRoundedDetail className=" font-raleway text-lg" />,
     },
     {
       title: "Contact",
       path: "#",
-      icon: <BiSolidUserRectangle className="text-lg" />,
+      icon: <BiSolidUserRectangle className=" font-raleway text-lg" />,
     },
   ];
 
