@@ -3,7 +3,14 @@ import React from 'react';
 const page = () => {
   return (
     <div>
-      hello
+     <div className="flex ">
+    <div className="">
+
+    </div>
+    <div className="">
+      
+    </div>
+     </div>
     </div>
   );
 };
