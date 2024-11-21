@@ -16,14 +16,14 @@ const Root: React.FC<RootProps> = ({ children }) => {
       </header>
 
       {/* Navbar */}
-      <nav className=" border-b-[0.5px] border-[#292929]">
+      <nav className=" border-b-[0.5px] border-[#292929] bg-white">
         <Navbar/>
       </nav>
 
       <main className="min-h-screen container mx-auto px-4 flex justify-center items-center bg-[#F1F1F1]">
         <section className="w-full h-full lg:py-20">
           {children}
-          </section>
+          </section> 
       </main>
 
       {/* footer */}
