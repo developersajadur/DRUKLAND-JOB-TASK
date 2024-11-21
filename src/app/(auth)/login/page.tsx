@@ -6,7 +6,7 @@ const Login = () => {
     return (
         <div>
             <div className="flex justify-between items-center">
-                <div className="w-[700px] h-[550px] flex justify-center items-center rounded-[16px] bg-white">
+                <div className="w-[796px] h-[640px] flex justify-center items-center rounded-[16px] bg-white">
                     <h2 className="text-3xl font-normal w-[228px] leading-[39px]">
                     Image or Video of our services
                     </h2>

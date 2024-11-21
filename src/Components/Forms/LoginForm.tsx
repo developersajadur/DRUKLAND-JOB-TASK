@@ -1,9 +1,10 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { MdError } from "react-icons/md";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Button, Checkbox, FloatingLabel, Label } from "flowbite-react";
+import { Button, Checkbox, FloatingLabel, Label, Alert } from "flowbite-react";
+import axios from "axios"; // Import axios
 import SocialSignIn from "../Other/SocialSignIn";
 
 type Inputs = {
@@ -12,12 +13,32 @@ type Inputs = {
 };
 
 const LoginForm = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const [flashMessage, setFlashMessage] = useState<string | null>(null); 
+  const [flashMessageType, setFlashMessageType] = useState<'success' | 'error' | null>(null); 
+
+  const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
+
+  // API call to handle login
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      const response = await axios.post("https://social-login.druckland.de/api/v1/user/signin", {
+        email: data.email,
+        password: data.password,
+      });
+
+      // Handle the response data based on success or failure
+      if (response.status === 200) {
+        setFlashMessage(response.data.message || "Login successful!");
+        setFlashMessageType("success");
+      } else {
+        setFlashMessage(response.data.message || "Something went wrong. Please try again.");
+        setFlashMessageType("error");
+      }
+    } catch (error: any) {
+      setFlashMessage(error.response?.data?.message || "An error occurred. Please try again later.");
+      setFlashMessageType("error");
+    }
+  };
 
   return (
     <div>
@@ -35,31 +56,33 @@ const LoginForm = () => {
           </h6>
         </div>
 
-        {/* Error Message */}
-        <div className="flex gap-1 items-center justify-center mt-6 text-center">
-          <MdError />
-          <h6 className=" text-[12px] text-black text-center">
-            Unknown email address. Try again!
-          </h6>
-        </div>
+        {/* Flash Message */}
+        {flashMessage && (
+          <Alert color={flashMessageType === "success" ? "success" : "failure"} className="mt-4">
+            {flashMessage}
+          </Alert>
+        )}
 
         {/* Form Input */}
         <div className="mt-5">
           <form onSubmit={handleSubmit(onSubmit)}>
             <FloatingLabel
-              {...register("email", { required: true })}
+              {...register("email", { required: "Email is required" })}
               variant="standard"
               type="email"
               label="Email Address"
               color="success"
             />
+            {errors.email && <p className="text-red-500 text-xs">{errors.email.message}</p>}
+
             <FloatingLabel
-              {...register("password", { required: true })}
+              {...register("password", { required: "Password is required" })}
               variant="standard"
               type="password"
               label="Password"
               color="success"
             />
+            {errors.password && <p className="text-red-500 text-xs">{errors.password.message}</p>}
 
             <div className="flex items-center gap-2 mt-8">
               <Checkbox required id="remember" />
@@ -75,7 +98,7 @@ const LoginForm = () => {
                 </Link>
               </Label>
             </div>
-            <Button className="bg-[#0F0F0F] text-base font-normal w-full mt-3">
+            <Button type="submit" className="bg-[#0F0F0F] text-base font-normal w-full mt-3">
               Log In
             </Button>
           </form>
@@ -83,13 +106,14 @@ const LoginForm = () => {
 
         {/* Horizontal Rule with Text */}
         <div className="flex items-center my-4">
-        <hr className="flex-grow border-[#0F0F0F]" />
+          <hr className="flex-grow border-[#0F0F0F]" />
           <span className="px-3 text-sm text-[#0F0F0F]">or sign in with</span>
           <hr className="flex-grow border-[#0F0F0F]" />
         </div>
-        {/* social login */}
-        <div className="">
-            <SocialSignIn/>
+
+        {/* Social Login */}
+        <div>
+          <SocialSignIn />
         </div>
       </div>
     </div>
