@@ -3,8 +3,8 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { MdError } from "react-icons/md";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Button, Checkbox, FloatingLabel, Label, Alert } from "flowbite-react";
-import axios from "axios"; // Import axios
+import { Button, Checkbox, FloatingLabel, Label } from "flowbite-react";
+import axios from "axios"; 
 import SocialSignIn from "../Other/SocialSignIn";
 
 type Inputs = {
@@ -18,7 +18,6 @@ const LoginForm = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
 
-  // API call to handle login
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       const response = await axios.post("https://social-login.druckland.de/api/v1/user/signin", {
@@ -26,7 +25,6 @@ const LoginForm = () => {
         password: data.password,
       });
 
-      // Handle the response data based on success or failure
       if (response.status === 200) {
         setFlashMessage(response.data.message || "Login successful!");
         setFlashMessageType("success");
@@ -34,9 +32,11 @@ const LoginForm = () => {
         setFlashMessage(response.data.message || "Something went wrong. Please try again.");
         setFlashMessageType("error");
       }
-    } catch (error: any) {
-      setFlashMessage(error.response?.data?.message || "An error occurred. Please try again later.");
+    } catch (error: unknown) {
+      setFlashMessage("An error occurred. Please try again later.");
       setFlashMessageType("error");
+      console.log(error);
+      
     }
   };
 
@@ -55,17 +55,19 @@ const LoginForm = () => {
           </h6>
         </div>
 
-        {/* Flash Message */}
         {flashMessage && (
-          <div className="flex gap-1 items-center justify-center mt-6 text-center">
-          <MdError />
-          <h6 className="font-clash text-[12px] mt-1 text-black text-center">
-            Unknown email address. Try again!
-          </h6>
-        </div>
+          <div
+            className={`flex gap-1 items-center justify-center mt-6 text-center ${
+              flashMessageType === "success" ? "text-green-500" : "text-red-500"
+            }`}
+          >
+            <MdError />
+            <h6 className="font-clash text-[12px] mt-1 text-black text-center">
+              {flashMessage}
+            </h6>
+          </div>
         )}
 
-        {/* Form Input */}
         <div className="mt-5">
           <form onSubmit={handleSubmit(onSubmit)}>
             <FloatingLabel
@@ -106,14 +108,12 @@ const LoginForm = () => {
           </form>
         </div>
 
-        {/* Horizontal Rule with Text */}
         <div className="flex items-center my-4">
           <hr className="flex-grow border-[#0F0F0F]" />
           <span className="font-clash px-3 text-sm text-[#0F0F0F]">or sign in with</span>
           <hr className="flex-grow border-[#0F0F0F]" />
         </div>
 
-        {/* Social Login */}
         <div>
           <SocialSignIn />
         </div>
