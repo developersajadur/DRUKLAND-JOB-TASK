@@ -24,12 +24,14 @@ const LoginForm = () => {
         email: data.email,
         password: data.password,
       });
+      console.log(response.data);
+      
 
       if (response.status === 200) {
         setFlashMessage(response.data.message || "Login successful!");
         setFlashMessageType("success");
       } else {
-        setFlashMessage(response.data.message || "Something went wrong. Please try again.");
+        setFlashMessage(response.data.message || "Unknown email address. Try again!");
         setFlashMessageType("error");
       }
     } catch (error: unknown) {
@@ -58,7 +60,7 @@ const LoginForm = () => {
         {flashMessage && (
           <div
             className={`flex gap-1 items-center justify-center mt-6 text-center ${
-              flashMessageType === "success" ? "text-green-500" : "text-red-500"
+              flashMessageType === "success" ? "text-blue-500" : "text-black"
             }`}
           >
             <MdError />
