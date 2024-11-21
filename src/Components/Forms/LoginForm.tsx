@@ -41,8 +41,8 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="p-8 rounded-2xl bg-white max-w-sm w-full shadow-lg">
+    <div className="flex justify-center items-center min-h-screen">
+      <div className="p-8 rounded-2xl bg-white max-w-sm w-full">
         <h2 className="font-clash text-3xl font-normal text-[#0F0F0F] text-center">Drukland.de</h2>
         
         <div className="mt-8 leading-[5px]">
